@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Profile from "./components/profile/Profile";
+import NavMain from "./components/navbar/NavMain";
+import { Button } from "semantic-ui-react";
+import Footer from "./components/navbar/footer/Footer";
+class App extends React.Component {
+  state = {
+    show: false,
+  };
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  handleShowPerson = () => {
+    this.setState({
+      ...this.state,
+      show: !this.state.show,
+    });
+  };
+
+  render() {
+    return (
+      <>
+        <NavMain />
+        <Button
+        style={{marginTop:"30px"}}
+        className="start"
+          basic
+          color="blue"
+          content="Click Here To See My Profile"
+          onClick={this.handleShowPerson}
+        />
+
+
+        {this.state.show ? <Profile /> : null}
+        <Footer />
+      </>
+    );
+  }
 }
 
 export default App;
